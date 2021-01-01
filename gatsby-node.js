@@ -19,6 +19,8 @@ exports.createPages = ({ graphql, actions }, options) => {
             price
             tags
             views
+            taxonomy_path
+            num_favorers
             childrenEtsyListingImage {
               url_170x135
               url_570xN

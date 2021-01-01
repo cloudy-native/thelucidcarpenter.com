@@ -1,3 +1,4 @@
+
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
@@ -10,20 +11,26 @@ function FrontPage() {
         edges {
           node {
             id
-            currency_code
             description
             title
             materials
             price
             tags
             views
+            is_customizable
+            item_dimensions_unit
+            item_height
+            item_length
+            item_weight
+            item_weight_unit
+            shipping_template_id
+            taxonomy_path
+            num_favorers
             childrenEtsyListingImage {
               url_170x135
               url_570xN
               url_75x75
               url_fullxfull
-              saturation
-              rank
             }
           }
         }

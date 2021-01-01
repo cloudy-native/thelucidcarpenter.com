@@ -1,11 +1,11 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
-    Container,
     Flex,
     Heading,
+    Text,
+    Spacer,
     useColorMode,
-    useColorModeValue,
-    Box
+    useColorModeValue
 } from "@chakra-ui/react";
 import { Link } from "gatsby";
 import React from "react";
@@ -18,12 +18,13 @@ function Switcher() {
 
 function NavBar({ title }) {
     return (
-        <Flex width="100%" as="nav" justify="space-between">
-            <Heading as="h1" >
+        <Flex width="100%" as="nav" >
+            <Text fontSize="4xl" >
                 <Link to="/">
                     {title}
                 </Link>
-            </Heading>
+            </Text>
+            <Spacer />
             <Switcher />
         </Flex>
     );

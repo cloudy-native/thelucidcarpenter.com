@@ -1,30 +1,34 @@
-import { StarIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
+import { StarIcon, ViewIcon, } from "@chakra-ui/icons";
+import { Box, Grid, GridItem, Image, Spacer, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import Layout from "../components/layout";
 import Materials from "../components/materials";
+import TaxonomyPath from "../components/taxonomy-path";
 
 function ProductDetailPage({ pageContext }) {
   const { node } = pageContext
-  const { id, childrenEtsyListingImage, description, materials, price, tags, title, views } = node
+  const { childrenEtsyListingImage, description, materials, price, title, views, num_favorers, taxonomy_path } = node
   console.log('pageContext', pageContext)
 
   return (
     <Layout>
-      <Flex justify="space-between">
-        <Image objectFit="scale-down" src={childrenEtsyListingImage[0].url_570xN} />
-        <Spacer p={5} />
-        <Flex flexDirection="column" >
-          <Heading as="h3" >{title}</Heading>
-          <Text as="p" mt={8}>
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
-          </Text>
-          {
-            materials && materials.length > 0 && <Materials mt={8} materials={materials} />
-          }
-          <Text as="p" mt={8}>Price: ${price}</Text>
-          <Spacer />
-          <Flex justify="space-between">
+      {/* <TaxonomyPath taxonomy={taxonomy_path}/> */}
+      <Grid templateColumns="repeat(5, 1fr)" gap={8} >
+        <GridItem colSpan={3}  >
+          <VStack spacing={8}>
+            <Image objectFit="scale-down" src={childrenEtsyListingImage[0].url_570xN} />
+            <Text fontSize="sm">
+              <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            </Text>
+          </VStack>
+        </GridItem>
+        <GridItem colSpan={2}  >
+          <VStack alignItems="flex-start">
+            <Text fontSize="md" >{title}</Text>
+            <Text mt={8}>${price}</Text>
+            {
+              materials && materials.length > 0 && <Materials mt={8} materials={materials} />
+            }
             <Box as="span" d="flex" alignItems="center" fontSize="sm">
               {Array(5)
                 .fill("")
@@ -35,12 +39,16 @@ function ProductDetailPage({ pageContext }) {
                   />
                 ))}
             </Box>
-            <Box as="span" color="gray.600" fontSize="sm">
-              {views} views
+            <Spacer />
+            <Box color="gray.600" fontSize="sm">
+              <ViewIcon/> {views}
           </Box>
-          </Flex>
-        </Flex>
-      </Flex>
+            <Box color="gray.600" fontSize="sm">
+              ❤️ {num_favorers}
+          </Box>
+          </VStack>
+        </GridItem>
+      </Grid>
     </Layout>
   )
 };

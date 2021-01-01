@@ -5,7 +5,7 @@ import {
   Flex,
   Spacer,
   Text,
-
+Box,
   VStack
 } from '@chakra-ui/react'
 import theme from "@chakra-ui/theme"
@@ -29,19 +29,17 @@ function Layout({ children }) {
 
   return (
     <ChakraProvider theme={theme}>
-      <Container mt={4} maxW="90%">
-        <VStack spacing={5}>
+      <Container maxW="4xl">
+        <VStack>
           <NavBar title={title} />
           <Divider />
-          <main>{children}</main>
+          <main> <Box mt={6}>{children}</Box></main>
           <Divider />
-          <footer >
-            <Flex justify="space-between">
-              <Text fontSize="sm">© {new Date().getFullYear()} {` `} {title}</Text>
-              <Spacer />
-              <Text fontSize="sm">Made with ❤️ by Stephen Harrison</Text>
-            </Flex>
-          </footer>
+          <Flex mt={6} width="100%">
+            <Text fontSize="sm">© {new Date().getFullYear()} {` `} {title}</Text>
+            <Spacer />
+            <Text fontSize="sm">Made with ❤️ by Stephen Harrison</Text>
+          </Flex>
         </VStack>
       </Container>
     </ChakraProvider>
