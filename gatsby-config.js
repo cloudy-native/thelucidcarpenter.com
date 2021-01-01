@@ -1,10 +1,19 @@
+require("dotenv").config({ path: `.env` })
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `The Lucid Chisel`,
+    description: `Buy my stuff at thelucidchisel.com.`,
+    author: `stephen@harrison.org`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-etsy",
+      options: {
+        api_key: process.env.ETSY_API_KEY,
+        shop_id: process.env.ETSY_SHOP_NAME,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -21,8 +30,6 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
