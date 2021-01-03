@@ -1,16 +1,13 @@
-import {
-    Box,
-    Tag
-} from '@chakra-ui/react'
+import { Box, Tag,HStack } from '@chakra-ui/react'
 import React from "react"
 
-function Materials({ materials ,...rest}) {
+function Materials({ materials }) {
     return (
-        <Box>
+        <HStack spacing={2}>
             {
-                materials.map((material) => <Tag {...rest}>{material}</Tag>)
+                materials.map((material) => <Tag key={material}>{material}</Tag>)
             }
-        </Box>
+        </HStack>
     )
 }
 

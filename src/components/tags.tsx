@@ -1,17 +1,14 @@
 import {
-    HStack,
-    Tag,
-    Text,
-    Box
+    Box, Tag
 } from '@chakra-ui/react'
 import React from "react"
 
-function Tags({ tags }) {
+function Tags({ tags, ...rest }) {
     return (
         <Box>
-        {
-            tags.map((tag) => <Tag>{tag}</Tag>)
-        }
+            {
+                tags.map((tag) => <Tag {...rest} key="tag">{tag}</Tag>)
+            }
         </Box>
     )
 }

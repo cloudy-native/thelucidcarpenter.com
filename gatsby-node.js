@@ -7,40 +7,47 @@ exports.createPages = ({ graphql, actions }, options) => {
   const { createPage } = actions
 
   return graphql(`
-    {
+    query {
       allEtsyListing {
-        edges {
-          node {
-            id
-            currency_code
-            description
-            title
-            materials
-            price
-            tags
-            views
-            taxonomy_path
-            num_favorers
-            childrenEtsyListingImage {
-              url_170x135
-              url_570xN
-              url_75x75
-              url_fullxfull
-              saturation
-              rank
+        nodes {
+          id
+          title
+          description
+          materials
+          price
+          url
+          views
+          num_favorers
+          taxonomy_path
+          childrenEtsyListingImage {
+            childFile {
+              childImageSharp {
+                fluid {
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  originalName
+                  originalImg
+                  presentationHeight
+                  presentationWidth
+                  sizes
+                }
+              }
             }
           }
         }
       }
     }
   `).then(listings => {
-    listings.data.allEtsyListing.edges.forEach(({ node }) => {
-      console.log("node", node)
-
+    console.log("listings.data.allEtsyListing.nodes > ", JSON.stringify(listings?.data?.allEtsyListing?.nodes, null, 2))
+    listings.data.allEtsyListing.nodes.forEach(node => {
+      console.log("node > ", JSON.stringify(node, null, 2))
       createPage({
         path: `/listing/${node.id}/`,
         component: productDetailTemplate,
-        context: { node },
+        context: { node }, 
       })
     })
   })
