@@ -41,9 +41,7 @@ exports.createPages = ({ graphql, actions }, options) => {
       }
     }
   `).then(listings => {
-    console.log("listings.data.allEtsyListing.nodes > ", JSON.stringify(listings?.data?.allEtsyListing?.nodes, null, 2))
     listings.data.allEtsyListing.nodes.forEach(node => {
-      console.log("node > ", JSON.stringify(node, null, 2))
       createPage({
         path: `/listing/${node.id}/`,
         component: productDetailTemplate,

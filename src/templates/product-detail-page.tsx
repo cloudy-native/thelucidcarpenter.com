@@ -1,50 +1,10 @@
-import { StarIcon, ViewIcon } from "@chakra-ui/icons";
-import { Box, Button, SimpleGrid, HStack, Spacer, Text, VStack, Flex } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
+import { Box, Button, Flex, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
 import Img from 'gatsby-image';
 import React from "react";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Layout from "../components/layout";
-import Materials from "../components/materials";
-
-// function Carousel({ childrenEtsyListingImage }) {
-//   return (
-//     <>
-//       <Box width="100%">
-//       </Box>
-//       {/* <Slider {...sliderSettings}>
-//       {
-//         // node.childrenEtsyListingImage.map(image =>  <Text>{JSON.stringify(image.childFile.childImageSharp.fluid)}</Text>)
-//         childrenEtsyListingImage.map(image =>  <Img fluid={image.childFile.childImageSharp.fluid}/>)
-//       }
-//     </Slider> */}
-//     </>
-//     // <Img fluid={images[0].childFile.childImageSharp.fluid} />
-//     // <VStack>
-//     //   {/* <Slider {...sliderSettings} > */}
-//     //   {
-//     //     images.map((image) => <FluidImage image={image} />)
-//     //   }
-//     //   {/* </Slider> */}
-//     // </VStack>
-//   )
-// }
-function ImageAndDescription({ description, childrenEtsyListingImage }) {
-  return (
-    <VStack spacing={8}>
-      {/* {
-        childrenEtsyListingImage.map(image => <Text fontSize="xs">{JSON.stringify(image.childFile.childImageSharp.fluid.originalImg, null, 2)}</Text>)
-      } */}
-      {/* {
-        // childrenEtsyListingImage.map(image => <Center bg="green.500">
-        //   <Text>{JSON.stringify(image.childFile.childImageSharp.fixed.srcWebp, null, 2)}</Text>
-        // </Center>)
-        childrenEtsyListingImage.map(image => <Img fluid={image.childFile.childImageSharp.fluid} />)
-      } */}
-      {/* <Carousel childrenEtsyListingImage={childrenEtsyListingImage} /> */}
-      {/* <Image objectFit="scale-down" src={images[0].url_570xN} /> */}
-
-    </VStack>
-  )
-}
 
 function Details({ materials, views, num_favorers, url, price, title }) {
   return (
@@ -68,11 +28,16 @@ function ImageCard({ image }) {
 
 function ImageGrid({ childrenEtsyListingImage }) {
   return (
-    <SimpleGrid width="100%" columns={[1, 2, 3]} spacing={4} >
+    <Carousel
+      infiniteLoop
+      useKeyboardArrows
+      renderItem={(item: React.ReactNode) => <Box>{item}</Box>}
+      renderThumbs={(children: React.ReactChild[]) => children.map(child => <Box>{child}</Box>)}
+    >
       {
-        childrenEtsyListingImage.map(image => <ImageCard image={image} />)
+        childrenEtsyListingImage.map(image => <div><ImageCard image={image} /></div>)
       }
-    </SimpleGrid>
+    </Carousel>
   )
 }
 
@@ -102,8 +67,7 @@ function Title({ title }) {
     </Flex>
   )
 }
-function ProductDetailPage({ pageContext }) { 
-  console.log('pageContext >>', pageContext)
+function ProductDetailPage({ pageContext }) {
   const { node } = pageContext
   const { url, childrenEtsyListingImage, description, materials, price, title, views, num_favorers, taxonomy_path } = node
 

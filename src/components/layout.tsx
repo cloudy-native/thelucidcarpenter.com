@@ -31,7 +31,6 @@ function Layout({ children }) {
           digital_listing_count
           login_name
           accepts_custom_requests
-          policy_updated_tsz
           policy_has_private_receipt_info
           url
           num_favorers
