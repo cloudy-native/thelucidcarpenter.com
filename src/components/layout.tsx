@@ -5,7 +5,7 @@ import {
   Flex,
   Spacer,
   Text,
-Box,
+  Box,
   VStack
 } from '@chakra-ui/react'
 import theme from "@chakra-ui/theme"
@@ -15,30 +15,72 @@ import React from "react"
 import NavBar from './navbar'
 
 function Layout({ children }) {
-  const data = useStaticQuery(graphql`
-      query SiteTitleQuery {
-      site {
-          siteMetadata {
+  const etsyStore = useStaticQuery(graphql`
+    {
+      etsyStore(data: {}) {
+        data {
+          shop_id
+          shop_name
+          user_id
+          creation_tsz
           title
-          }
+          currency_code
+          is_vacation
+          last_updated_tsz
+          listing_active_count
+          digital_listing_count
+          login_name
+          accepts_custom_requests
+          policy_updated_tsz
+          policy_has_private_receipt_info
+          url
+          num_favorers
+          icon_url_fullxfull
+          is_using_structured_policies
+          has_onboarded_structured_policies
+          has_unstructured_policies
+          include_dispute_form_link
+          is_direct_checkout_onboarded
+          is_calculated_eligible
+          is_opted_in_to_buyer_promise
+          is_shop_us_based
+        }
       }
     }
   `)
 
-  const title = data.site.siteMetadata?.title || `Title`
+  const store = etsyStore?.etsyStore?.data[0]
+  const title = store.title || `Title`
+
+  const siteTheme = {
+    ...theme,
+    fonts: {
+      body: "Open Sans, sans-serif",
+      heading: "Open Sans, serif",
+      mono: "Menlo, monospace",
+    }
+  }
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={siteTheme}>
       <Container maxW="4xl">
-        <VStack>
+        <VStack spacing={6}>
           <NavBar title={title} />
           <Divider />
-          <main> <Box mt={6}>{children}</Box></main>
+          <main><Box>{children}</Box></main>
           <Divider />
-          <Flex mt={6} width="100%">
+          <Flex width="100%">
             <Text fontSize="sm">© {new Date().getFullYear()} {` `} {title}</Text>
             <Spacer />
-            <Text fontSize="sm">Made with ❤️ by Stephen Harrison</Text>
+            <Text fontSize="sm">Website made from scratch with ❤️ by Stephen Harrison</Text>
+          </Flex>
+          <Flex width="100%">
+            {
+              store.is_vacation && <Text>We're on vacation</Text>
+            }
+            {
+              store.is_shop_us_based && <Text>Proudly made in USA</Text>
+            }
           </Flex>
         </VStack>
       </Container>

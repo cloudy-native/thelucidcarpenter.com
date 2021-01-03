@@ -2,8 +2,8 @@ require("dotenv").config({ path: `.env` })
 
 module.exports = {
   siteMetadata: {
-    title: `The Lucid Carpenter`,
-    description: `Buy my stuff at thelucidcarpenter.com.`,
+    title: `The Lucid Chisel`,
+    description: `Buy my stuff at thelucidchisel.com.`,
     author: `stephen@harrison.org`,
   },
   plugins: [
@@ -34,7 +34,15 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Open Sans']
+        }
+      }
+    }  
+      // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],

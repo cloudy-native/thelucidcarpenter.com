@@ -1,31 +1,31 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Flex,
-    Heading,
     Text,
     Spacer,
     useColorMode,
-    useColorModeValue
+    useColorModeValue,
+    Button,
+    ButtonGroup
 } from "@chakra-ui/react";
 import { Link } from "gatsby";
 import React from "react";
 
-function Switcher() {
-    const { toggleColorMode: toggleMode } = useColorMode()
-    const text = useColorModeValue(<SunIcon />, <MoonIcon />)
-    return <button onClick={toggleMode}>{text}</button>
-}
-
 function NavBar({ title }) {
+    const { toggleColorMode: toggleMode } = useColorMode()
+    const text = useColorModeValue(<MoonIcon />, <SunIcon />)
+
     return (
-        <Flex width="100%" as="nav" >
+        <Flex mt={4} width="100%" as="nav" align="center">
             <Text fontSize="4xl" >
-                <Link to="/">
-                    {title}
-                </Link>
+                <Link to="/">{title}</Link>
             </Text>
             <Spacer />
-            <Switcher />
+            <ButtonGroup variant="link" spacing={6}>
+                <Button><Link to="/">Home</Link></Button>
+                <Button><Link to="/about">About</Link></Button>
+                <Button onClick={toggleMode}>{text}</Button>
+            </ButtonGroup>
         </Flex>
     );
 };

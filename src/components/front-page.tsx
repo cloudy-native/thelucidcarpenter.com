@@ -2,10 +2,10 @@
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import ProductCard from "./product-card";
+import ProductCard from "../templates/product-card";
 
 function FrontPage() {
-  const data = useStaticQuery(graphql`
+  const listings = useStaticQuery(graphql`
     {
       allEtsyListing {
         edges {
@@ -39,12 +39,9 @@ function FrontPage() {
   `)
 
   return (
-    <SimpleGrid
-      columns={{ sm: 1, md: 2, lg: 4 }}
-      spacing={4}
-    >
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4} >
       {
-        data.allEtsyListing.edges.map(({ node }) => <ProductCard product={node} />)
+        listings.allEtsyListing.edges.map(({ node }) => <ProductCard product={node} />)
       }
     </SimpleGrid>
   )
