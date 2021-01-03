@@ -2,7 +2,7 @@ require("dotenv").config({ path: `.env` })
 
 module.exports = {
   siteMetadata: {
-    title: `The Lucid Carpenter`,
+    title: `The Lucid Chisel`,
     description: `Buy my stuff at thelucidchisel.com.`,
     author: `stephen@harrison.org`,
   },
