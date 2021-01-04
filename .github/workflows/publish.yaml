@@ -7,6 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
+  show-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env
+        run: env
+        
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
