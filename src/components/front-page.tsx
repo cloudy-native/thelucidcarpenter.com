@@ -6,42 +6,48 @@ import ProductCard from "../templates/product-card";
 
 function FrontPage() {
   const listings = useStaticQuery(graphql`
-    {
-      allEtsyListing {
-        edges {
-          node {
-            id
-            description
-            title
-            materials
-            price
-            tags
-            views
-            is_customizable
-            item_dimensions_unit
-            item_height
-            item_length
-            item_weight
-            item_weight_unit
-            shipping_template_id
-            taxonomy_path
-            num_favorers
-            childrenEtsyListingImage {
-              url_170x135
-              url_570xN
-              url_75x75
-              url_fullxfull
+  query {
+    allEtsyListing {
+      nodes {
+        id
+        description
+        title
+        price
+        views
+        is_customizable
+        num_favorers
+        childrenEtsyListingImage {
+          childFile {
+            childImageSharp {
+              fixed {
+                tracedSVG
+                aspectRatio
+                srcWebp
+                srcSetWebp
+                originalName
+              }
+              fluid {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+              }
             }
           }
         }
       }
     }
-  `)
+  }
+`)
+
+  console.log('listings', listings)
 
   return (
     <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4} >
       {
-        listings.allEtsyListing.edges.map(({ node }) => <ProductCard product={node} />)
+        listings.data.allEtsyListing.nodes.map(({ node }) => <ProductCard product={node} />)
       }
     </SimpleGrid>
   )
