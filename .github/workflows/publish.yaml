@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Print env
         run: env
-        
+
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +42,9 @@ jobs:
         run: |
           yarn install
           yarn build
+        env:
+          ETSY_SHOP_NAME: ${{ secrets.ETSY_SHOP_NAME }}
+          ETSY_API_KEY: ${{ secrets.ETSY_API_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
