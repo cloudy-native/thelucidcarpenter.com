@@ -42,6 +42,7 @@ jobs:
         run: |
           yarn install
           yarn build
+          env
         env:
           ETSY_SHOP_NAME: ${{ secrets.ETSY_SHOP_NAME }}
           ETSY_API_KEY: ${{ secrets.ETSY_API_KEY }}
