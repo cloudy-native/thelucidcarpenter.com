@@ -1,4 +1,4 @@
-import { Box, Tag,HStack } from '@chakra-ui/react'
+import { HStack, Tag } from '@chakra-ui/react'
 import React from "react"
 
 function Materials({ materials }) {

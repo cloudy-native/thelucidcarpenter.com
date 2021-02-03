@@ -1,12 +1,9 @@
 import React from "react";
-import FrontPage from "../components/front-page";
-import Layout from "../components/layout";
+import StoreFront from "../components/store-front";
 
 function IndexPage() {
   return (
-    <Layout>
-      <FrontPage />
-    </Layout>
+    <StoreFront />
   );
 }
 

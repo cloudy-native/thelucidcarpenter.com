@@ -2,11 +2,15 @@ require("dotenv").config({ path: `.env` })
 
 module.exports = {
   siteMetadata: {
-    title: `The Lucid Chisel`,
+    // title: `the lucid chisel`, we get this from your shop title directly from the Etsy API
     description: `Buy my stuff at thelucidchisel.com.`,
-    author: `stephen@harrison.org`,
+    author: {
+      email: `stephen@thelucidchisel.com`,
+      name: "Stephen Harrison",
+    },
   },
   plugins: [
+    `@chakra-ui/gatsby-plugin`,
     {
       resolve: "gatsby-source-etsy",
       options: {
@@ -35,14 +39,14 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ['Open Sans']
-        }
-      }
-    }  
-      // this (optional) plugin enables Progressive Web App + Offline functionality
+          families: ["Open Sans"],
+        },
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],

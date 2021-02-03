@@ -1,13 +1,4 @@
-import {
-  ChakraProvider,
-  Container,
-  Divider,
-  Flex,
-  Spacer,
-  Text,
-  Box,
-  VStack
-} from '@chakra-ui/react'
+import { Box, ChakraProvider, Container, Divider, Flex, Spacer, Text, VStack } from '@chakra-ui/react'
 import theme from "@chakra-ui/theme"
 import { graphql, useStaticQuery } from 'gatsby'
 import PropTypes from "prop-types"
@@ -61,29 +52,19 @@ function Layout({ children }) {
   }
 
   return (
-    <ChakraProvider theme={siteTheme}>
-      <Container maxW="4xl">
-        <VStack spacing={6}>
-          <NavBar title={title} />
-          <Divider />
-          <main><Box>{children}</Box></main>
-          <Divider />
-          <Flex width="100%">
-            <Text fontSize="sm">© {new Date().getFullYear()} {` `} {title}</Text>
-            <Spacer />
-            <Text fontSize="sm">Website made from scratch with ❤️ by Stephen Harrison</Text>
-          </Flex>
-          <Flex width="100%">
-            {
-              store.is_vacation && <Text>We're on vacation</Text>
-            }
-            {
-              store.is_shop_us_based && <Text>Proudly made in USA</Text>
-            }
-          </Flex>
-        </VStack>
-      </Container>
-    </ChakraProvider>
+    <Container maxW="4xl">
+      <VStack spacing={6}>
+        <NavBar title={title} />
+        <Divider />
+        <main><Box>{children}</Box></main>
+        <Divider />
+        <Flex width="100%">
+          <Text fontSize="sm">© {new Date().getFullYear()} {` `} {title}</Text>
+          <Spacer />
+          <Text fontSize="sm">Website made from scratch with ❤️ by Stephen Harrison</Text>
+        </Flex>
+      </VStack>
+    </Container>
   )
 }
 

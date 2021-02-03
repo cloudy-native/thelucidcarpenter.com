@@ -1,6 +1,4 @@
-import {
-    Box, Tag
-} from '@chakra-ui/react'
+import { Box, Tag } from '@chakra-ui/react'
 import React from "react"
 
 function Tags({ tags, ...rest }) {
