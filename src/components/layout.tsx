@@ -1,9 +1,8 @@
-import { Box, ChakraProvider, Container, Divider, Flex, Spacer, Text, VStack } from '@chakra-ui/react'
-import theme from "@chakra-ui/theme"
-import { graphql, useStaticQuery } from 'gatsby'
+import { Box, Container, Divider, Flex, Spacer, Text, VStack } from "@chakra-ui/react"
+import { graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import NavBar from './navbar'
+import NavBar from "./navbar"
 
 function Layout({ children }) {
   const etsyStore = useStaticQuery(graphql`
@@ -41,15 +40,6 @@ function Layout({ children }) {
 
   const store = etsyStore?.etsyStore?.data[0]
   const title = store.title || `Title`
-
-  const siteTheme = {
-    ...theme,
-    fonts: {
-      body: "Open Sans, sans-serif",
-      heading: "Open Sans, serif",
-      mono: "Menlo, monospace",
-    }
-  }
 
   return (
     <Container maxW="4xl">

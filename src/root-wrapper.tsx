@@ -1,7 +1,8 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import React from 'react'
-import Layout from './components/layout'
-import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from "@chakra-ui/theme";
+import React from 'react';
+import SimpleReactLightbox from 'simple-react-lightbox';
+import Layout from './components/layout';
 
 export function wrapPageElement({ element }) {
     return (

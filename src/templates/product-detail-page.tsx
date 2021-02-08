@@ -1,10 +1,9 @@
 import { Box, Button, Flex, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
-import Img from 'gatsby-image';
+import Img from "gatsby-image";
 import React from "react";
-import StackGrid, { transitions } from "react-stack-grid";
-import { SRLWrapper } from 'simple-react-lightbox';
-
-const { scaleDown, fadeUp, fade } = transitions;
+import StackGrid from "react-stack-grid";
+import { SRLWrapper } from "simple-react-lightbox";
+import { expandNewlines } from "../utils/util";
 
 function Details({ url, price }) {
   return (
@@ -27,7 +26,7 @@ function ImageCard({ image, ...rest }) {
 function ImageGrid({ childrenEtsyListingImage }) {
   return (
     <SRLWrapper>
-      <StackGrid>
+      <StackGrid> 
         {
           childrenEtsyListingImage.map((image, index) => <div key={index} ><ImageCard image={image} /></div>)
         }
@@ -39,7 +38,7 @@ function ImageGrid({ childrenEtsyListingImage }) {
 function Description({ description }) {
   return (
     <Text>
-      <div dangerouslySetInnerHTML={{ __html: description }}></div>
+      <div dangerouslySetInnerHTML={{ __html: expandNewlines(description) }}></div>
     </Text>
   )
 }

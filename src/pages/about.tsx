@@ -1,8 +1,8 @@
-import { EmailIcon, ExternalLinkIcon } from '@chakra-ui/icons'
-import { Grid, GridItem, Link, Text } from '@chakra-ui/react'
-import { graphql, useStaticQuery } from 'gatsby'
-import React from "react"
-
+import { EmailIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import { Grid, GridItem, Link, Text } from "@chakra-ui/react";
+import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import { expandNewlines } from "../utils/util";
 
 function About() {
   const data = useStaticQuery(graphql`
@@ -36,13 +36,13 @@ function About() {
   const emailLink = `mailto:${aboutMe.email}`
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" column gap={4} >
+    <Grid templateColumns="repeat(3, 1fr)" gap={4} >
       <GridItem colSpan={1}>
-        <Text fontSize="xl"><div dangerouslySetInnerHTML={{ __html: aboutStore.story_headline }}></div></Text>
+        <Text fontSize="xl"><div dangerouslySetInnerHTML={{ __html: expandNewlines(aboutStore.story_headline) }}></div></Text>
       </GridItem>
       <GridItem colSpan={2}>
-        <Text fontSize="sm"><div dangerouslySetInnerHTML={{ __html: aboutStore.story_leading_paragraph }}></div></Text>
-        <Text><div dangerouslySetInnerHTML={{ __html: aboutStore.story }}></div></Text>
+        <Text fontSize="sm"><div dangerouslySetInnerHTML={{ __html: expandNewlines(aboutStore.story_leading_paragraph) }}></div></Text>
+        <Text><div dangerouslySetInnerHTML={{ __html: expandNewlines(aboutStore.story) }}></div></Text>
       </GridItem>
 
       <GridItem colSpan={1}>
